@@ -10,9 +10,10 @@ import time
 V3_data_folder = Path("C:/Users/Jesus/Desktop/Master/TFM/Datos/")
 
 #V3_icd10_codes_dict_2018 = V3_data_folder / "icd10_codes_dict_2018.csv"
-V3_icd10_codes_dict_2021 = V3_data_folder / "icd10cm_order_2021.txt"
+V3_icd10_codes_dict_2021 = V3_data_folder / "icd10cm_order_2021.txt" # Obtained from https://www.cms.gov/files/zip/2021-code-descriptions-tabular-order-updated-12162020.zip
 
-### V3 COVID_DSL_06 - Data wrangling: removing lines exceeding fields number (7)
+### Data wrangling: adding "|" between fields following ICD10OrderFile https://www.cms.gov/files/zip/2021-code-descriptions-tabular-order-updated-12162020.zip
+# Input file is overwritten
 data = []
 
 try: # open file in read mode
@@ -20,7 +21,6 @@ try: # open file in read mode
    fp = open(V3_icd10_codes_dict_2021, "r", newline="\n", encoding = "latin-1")
 
    for line in fp:
-        #data.append(line)
 
         order_number = line[0:5]
         blank1 = line[5]
@@ -33,17 +33,6 @@ try: # open file in read mode
         long_description = line[77:]
         
         new_line = order_number + "|" + icd_10_cm_code.rstrip() + "|" + header + "|" + short_description.rstrip() + "|" + long_description.rstrip() + "\n"
-
-        """     stripped_line = []
-        new_line = ''
-
-        stripped_line = line.split("\"")
-        stripped_line[1] = stripped_line[1].replace(",",":")
-        stripped_line[3] = stripped_line[3].replace(",",":")
-        stripped_line[5] = stripped_line[5].replace(",",":")
-        
-        new_line = ''.join(stripped_line)
-        #new_line = ''.join(stripped_line[i] for i in [0,1,2,3,4,5]) + "\n" #Only six first fields"""
 
         data.append(new_line) 
         #print(new_line)

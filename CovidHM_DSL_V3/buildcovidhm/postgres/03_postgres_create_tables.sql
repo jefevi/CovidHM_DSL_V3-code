@@ -282,7 +282,7 @@ CREATE TABLE diagnosis_hosp_adm (
 -- Drop table
 
 -- DROP TABLE icd10_codes_dict;
--- This table was obtained from (kamillamagna/ICD-10-CSV, 2018)
+-- This table was obtained from https://www.cms.gov/files/zip/2021-code-descriptions-tabular-order-updated-12162020.zip
 
 CREATE TABLE icd10_codes_dict(
 	--cat_code VARCHAR,
