@@ -10,7 +10,7 @@ V3_data_folder = Path("C:/Users/Jesus/Desktop/Master/TFM/Datos/19_04_2021/")
 
 V3_laboratory = V3_data_folder / "COVID_DSL_06.csv"
 
-### V3 COVID_DSL_06 - Data wrangling: removing lines exceeding fields number (7)
+### V3 COVID_DSL_06 - Data wrangling: removing lines exceeding fields number (7) NOT NEEDED!!!!!!
 data = []
 
 try: # open file in read mode

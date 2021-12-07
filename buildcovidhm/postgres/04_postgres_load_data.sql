@@ -50,9 +50,9 @@
 --  Load Data for Table laboratory
 --------------------------------------------------------
 -- Removed all lines exceeding fields number
-\encoding utf-8
+\encoding latin1--\encoding utf-8
 \copy covidhm_dsl_v3.laboratory(patient_id, lab_number, lab_date, time_lab, item_lab, val_result, ud_result, ref_values) 
-				FROM 'C:/Users/Jesus/Desktop/Master/TFM/Datos/19_04_2021/COVID_DSL_06.csv' DELIMITER ',' CSV HEADER
+				FROM 'C:/Users/Jesus/Desktop/Master/TFM/Datos/19_04_2021/COVID_DSL_06_v2.CSV' DELIMITER ';' CSV HEADER
 --\copy covidhm_dsl_v3.laboratory(patient_id, lab_number, lab_date, time_lab, item_lab, val_result, ud_result, ref_values) 
 				--FROM 'C:/Users/Jesus/Desktop/Master/TFM/Datos/20_07_2020/CDSL_04.csv' DELIMITER ',' CSV HEADER	
 				
@@ -65,6 +65,7 @@
 
 --\copy covidhm_dsl_v3.diagnosis_er_adm(patient_id, dia_ppal, dia_02, dia_03, dia_04, dia_05, dia_06, dia_07, dia_08, dia_09, dia_10, dia_11,
 					   --dia_12, proc_01, proc_02, proc_03, proc_04, proc_05) FROM 'C:\Users\Jesus\Desktop\Master\TFM\Datos\20_07_2020\CDSL_05.csv' DELIMITER '|' CSV HEADER
+
 --------------------------------------------------------
 --  Load Data for Table diagnosis_hosp_adm
 --------------------------------------------------------
@@ -83,3 +84,9 @@
 						 --proc_03, proc_04, proc_05, proc_06, proc_07, proc_08, proc_09, proc_10, proc_11, proc_12,
 						 --proc_13, proc_14, proc_15, proc_16, proc_17, proc_18, proc_19, proc_20, neo_01, neo_02, 
 						 --neo_03, neo_04, neo_05, neo_06,	patient_id) FROM 'C:\Users\Jesus\Desktop\Master\TFM\Datos\20_07_2020\CDSL_06.csv' DELIMITER '|' CSV HEADER
+
+--------------------------------------------------------
+--  Load Data for Table icd10_codes_dict
+--------------------------------------------------------
+\encoding latin1					 
+\copy covidhm_dsl_v3.icd10_codes_dict(order_number, full_code, codeheader, abbrev_desc, full_desc) from 'C:\Users\Jesus\Desktop\Master\TFM\Datos\icd10cm_order_2021.txt' DELIMITER '|' CSV HEADER

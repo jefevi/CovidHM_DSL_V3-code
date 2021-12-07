@@ -41,35 +41,36 @@ CREATE TABLE patient (
 	age int4 NULL,
 	sex varchar NULL,
 	diag_inpat varchar NULL,
-	admission_d_inpat timestamp NULL,
-	icu_date_in timestamp NULL,
-	icu_date_out timestamp NULL,
+	admission_d_inpat timestamp without time zone NULL,--timestamp NULL,
+	icu_date_in timestamp without time zone NULL,--timestamp NULL,
+	icu_date_out timestamp without time zone NULL,--timestamp NULL,
 	icu_days int4 NULL,
 	mechvent varchar NULL,
-	discharge_date timestamp NULL,
+	discharge_date timestamp without time zone NULL,--timestamp NULL,
 	destin_discharge varchar NULL,
-	admission_date_emerg timestamp NULL,
+	admission_date_emerg timestamp without time zone NULL,--timestamp NULL,
 	time_admission_emerg time NULL,--timestamp NULL,
 	department_emerg varchar NULL,
 	diag_emerg varchar NULL,
 	destin_emerg varchar NULL,
 	time_constant_first_emerg varchar NULL,
-	temp_first_emerg numeric NULL,
+	temp_first_emerg float8 NULL,--numeric NULL,
 	hr_first_emerg int4 NULL,
-	glu_first_emerg numeric NULL,
-	sat_02_first_emerg numeric NULL,
-	bp_max_first_emerg numeric NULL,
-	bp_min_first_emerg numeric NULL,
+	glu_first_emerg int4 NULL,--numeric NULL,
+	sat_02_first_emerg int4 NULL,--numeric NULL,
+	bp_max_first_emerg int4 NULL,--numeric NULL,
+
+	bp_min_first_emerg int4 NULL,--numeric NULL,
 	time_constant_last_emerg time NULL,--timestamp NULL,
-	hr_last_emerg numeric NULL,
-	temp_last_emerg numeric NULL,
-	glu_last_emerg numeric NULL,
-	sat_02_last_emerg numeric NULL,
-	bp_max_last_emerg numeric NULL,
-	bp_min_last_emerg numeric NULL,
-	diuresis_first_emerg numeric NULL,
+	hr_last_emerg int4 NULL,--numeric NULL,
+	temp_last_emerg float8 NULL,--numeric NULL,
+	glu_last_emerg int4 NULL,--numeric NULL,
+	sat_02_last_emerg int4 NULL,--numeric NULL,
+	bp_max_last_emerg int4 NULL,--numeric NULL,
+	bp_min_last_emerg int4 NULL,--numeric NULL,
+	diuresis_first_emerg int4 NULL,--numeric NULL,
     idcdsl int4 NULL, 
-	ant_admission_date_in timestamp NULL,
+	ant_admission_date_in timestamp without time zone NULL,--timestamp NULL,
 	ant_diag_inpat varchar NULL,
     icu_n_ing int4 NULL,
 	PRIMARY KEY(patient_id)
@@ -88,15 +89,15 @@ CREATE TABLE patient (
 CREATE TABLE vital_signs (
 	id_vital_sign SERIAL,
 	patient_id int4 NOT NULL,
-	constants_ing_date date NULL,
+	constants_ing_date timestamp without time zone NULL,--date NULL,
 	constants_ing_time time NULL,
-	bp_max_ing numeric NULL,
-	bp_min_ing numeric NULL,
+	bp_max_ing int4 NULL,--numeric NULL,
+	bp_min_ing int4 NULL,--numeric NULL,
 	temp_ing float8 NULL,
-	hr_ing numeric NULL,
-	sat_02_ing numeric NULL,
+	hr_ing int4 NULL,--numeric NULL,
+	sat_02_ing int4 NULL,--numeric NULL,
 	sat_02_ing_obs varchar NULL,--numeric NULL,
-	glu_ing numeric NULL,
+	glu_ing int4 NULL,--numeric NULL,
 	PRIMARY KEY(id_vital_sign),
 	CONSTRAINT patient_id_constraint
 		FOREIGN KEY(patient_id)
@@ -122,8 +123,8 @@ CREATE TABLE medication (
 	id_atc7 varchar NULL,
 	atc7_name varchar NULL,
 	daily_avrg_dose int4 NULL,
-	drug_start_date date NULL,
-	drug_end_date date NULL,
+	drug_start_date timestamp without time zone NULL, --date NULL,
+	drug_end_date timestamp without time zone NULL, --date NULL,
 	PRIMARY KEY(id_medication),
 	CONSTRAINT patient_id_constraint
 		FOREIGN KEY(patient_id)
@@ -281,13 +282,14 @@ CREATE TABLE diagnosis_hosp_adm (
 -- Drop table
 
 -- DROP TABLE icd10_codes_dict;
--- This table was obtained from (kamillamagna/ICD-10-CSV, 2020)
+-- This table was obtained from (kamillamagna/ICD-10-CSV, 2018)
 
---CREATE TABLE icd10_codes_dict(
---   cat_code VARCHAR
---  ,dx_code  INTEGER
---  ,code     VARCHAR
---  ,abbrev   VARCHAR
---  ,full     VARCHAR
---  ,title    VARCHAR
---);
+CREATE TABLE icd10_codes_dict(
+	--cat_code VARCHAR,
+	--dx_code  VARCHAR,--INTEGER,
+	order_number VARCHAR,
+	full_code     VARCHAR,
+	abbrev_desc   VARCHAR,
+	full_desc     VARCHAR,
+	codeheader    VARCHAR
+);
